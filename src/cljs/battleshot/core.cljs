@@ -41,9 +41,13 @@
    {:component-did-mount (fn [] (setup-rating! (vec images)))
 
     :reagent-render (fn [_]
-                      [:div {:id :image-container}
-                       [:img {:id :first}]
-                       [:img {:id :second}]])}))
+                      [:div
+                       [:div {:id :controls-container}]
+                       [:div {:id :completion-container}
+                        [:span {:id :completion} "0%"]]
+                       [:div {:id :image-container}
+                        [:img {:id :first}]
+                        [:img {:id :second}]]])}))
 
 (defn load-folder []
   (let [folder (.showOpenDialog dialog (.getCurrentWindow remote) #js {:properties #js ["openDirectory"]})

@@ -1,13 +1,49 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #666666;
+}
+
+#controls-container {
+    position: absolute;
+    width: 90%;
+    height: 10%;
+    box-sizing: border-box;
+    border: solid;
+    border-right: none;
+    border-left:none;
+    border-size: 1px;
+    border-color: white;
+}
+
+#completion-container {
+    position: absolute;
+    margin-left: 90%;
+    width: 10%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: solid;
+    border-size: 1px;
+    border-color: white;
+    border-right: none;
+}
+
+#completion {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: red;
+    font-size: 3vw;
 }
 
 #image-container {
     position: absolute;
-    height: 100%;
+    top: 10%;
+    height: 90%;
     width: 100%;
-    background-color: #666666;
 }
 
 #first {
