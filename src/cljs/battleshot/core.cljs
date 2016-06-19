@@ -15,21 +15,26 @@
     (or (.endsWith f-lower ".jpg")
         (.endsWith f-lower ".jpeg"))))
 
-(defn listen [out-chan el type]
-  (events/listen el type (fn [e] (put! out-chan e))))
+(defn listen [out-chan el msg type]
+  (events/listen el type (fn [_] (put! out-chan msg))))
 
 (defn setup-rating! [images]
   (let [click-chan (chan)
         el-first (dom/getElement "first")
         el-second (dom/getElement "second")
         image-count (count images)]
-    (listen click-chan el-first "click")
-    (listen click-chan el-second "click")
-    (go-loop [[first-image second-image] (shuffle images)]
+    (listen click-chan el-first :first "click")
+    (listen click-chan el-second :second "click")
+    (go-loop [[first-image second-image] (shuffle images)
+              comparisons []]
       (set! (.-src el-first) first-image)
       (set! (.-src el-second) second-image)
-      (let [msg (<! click-chan)]
-        (recur (shuffle images))))))
+      (let [msg (<! click-chan)
+            comparison (case msg
+                         :first  [first-image second-image]
+                         :second [second-image first-image]
+                         (throw (js/Error. "Neither first nor second image selected!")))]
+        (recur (shuffle images) (conj comparisons comparison))))))
 
 (defn image-page
   [images]
