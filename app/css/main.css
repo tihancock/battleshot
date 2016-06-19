@@ -6,16 +6,16 @@
 
 #first {
     position: absolute;
-    width: 40%;
-    margin-left: 5%;
+    width: 45%;
+    margin-left: 2.5%;
     top: 50%;
     transform: translateY(-50%);
 }
 
 #second {
     position: absolute;
-    width: 40%;
-    margin-left: 55%;
+    width: 45%;
+    margin-left: 52.5%;
     top: 50%;
     transform: translateY(-50%);
 }
