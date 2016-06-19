@@ -21,8 +21,7 @@
 (defn setup-rating! [images]
   (let [click-chan (chan)
         el-first (dom/getElement "first")
-        el-second (dom/getElement "second")
-        image-count (count images)]
+        el-second (dom/getElement "second")]
     (listen click-chan el-first :first "click")
     (listen click-chan el-second :second "click")
     (go-loop [[first-image second-image] (shuffle images)
