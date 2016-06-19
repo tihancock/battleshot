@@ -10,7 +10,8 @@
                  [org.clojure/clojurescript "1.7.228"]
                  [cljsjs/react "0.13.3-1"]
                  [cljsjs/nodejs-externs "1.0.4-1"]
-                 [reagent "0.5.1"]]
+                 [reagent "0.5.1"]
+                 [org.clojure/core.async "0.2.374"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]]
 
