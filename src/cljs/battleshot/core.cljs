@@ -10,8 +10,6 @@
 (def dialog (.require remote "dialog"))
 (def fs (js/require "fs"))
 
-(def image-atom (reagent/atom {}))
-
 (defn is-jpeg [f]
   (let [f-lower (.toLowerCase f)]
     (or (.endsWith f-lower ".jpg")
@@ -25,15 +23,13 @@
         el-first (dom/getElement "first")
         el-second (dom/getElement "second")
         image-count (count images)]
-    (swap! image-atom #(apply sorted-map (interleave (range (count images)) images)))
     (listen click-chan el-first "click")
     (listen click-chan el-second "click")
-    (go-loop [[[first-rank first-image] [second-rank second-image]] (shuffle @image-atom)]
+    (go-loop [[first-image second-image] (shuffle images)]
       (set! (.-src el-first) first-image)
       (set! (.-src el-second) second-image)
       (let [msg (<! click-chan)]
-        (swap! image-atom (fn [m] (assoc m first-rank second-image second-rank first-image)))
-        (recur (shuffle @image-atom))))))
+        (recur (shuffle images))))))
 
 (defn image-page
   [images]
@@ -42,9 +38,6 @@
 
     :reagent-render (fn [_]
                       [:div {:id :image-container}
-                       [:ul {:id :image-list}
-                        (for [[k v] @image-atom]
-                          ^{:key k} [:li v])]
                        [:img {:id :first}]
                        [:img {:id :second}]])}))
 

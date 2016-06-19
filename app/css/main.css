@@ -4,18 +4,10 @@
     width: 100%;
 }
 
-#image-list {
-    list-style-type: none;
-    position: absolute;
-    width: 20%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 #first {
     position: absolute;
     width: 40%;
-    margin-left: 20%;
+    margin-left: 5%;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -23,7 +15,7 @@
 #second {
     position: absolute;
     width: 40%;
-    margin-left: 60%;
+    margin-left: 55%;
     top: 50%;
     transform: translateY(-50%);
 }
